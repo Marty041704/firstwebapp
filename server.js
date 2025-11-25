@@ -1,9 +1,14 @@
-const http = require("http");
+const express = require("express");
+const path = require("path");
 
+const app = express();
 const PORT = process.env.PORT || 3000;
 
-const server = http.createServer((req, res) => {
-  const html = `
+// Serve static files from "public" folder
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+  res.send(`
     <html>
       <head>
         <title>Rod Marty C. Mendoza</title>
@@ -19,38 +24,46 @@ const server = http.createServer((req, res) => {
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #e8d8ac, #d6b3c5);
+            background: #f5efe7;
             font-family: "Poppins", sans-serif;
-            color: #332b2b;
+            color: #2d2b2b;
           }
 
           .card {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 25px;
             background: white;
-            padding: 45px 65px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            border: 1px solid rgba(0,0,0,0.08);
+            padding: 35px 45px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+            border: 1px solid rgba(0,0,0,0.05);
+          }
+
+          img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #c2b2b2;
           }
 
           h1 {
-            margin-bottom: 6px;
-            font-size: 2.3rem;
+            font-size: 2rem;
             font-weight: 700;
             font-family: "Playfair Display", serif;
-            color: #4a3c3c;
+            margin-bottom: 6px;
           }
 
           h2 {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 400;
             color: #6b5555;
+            margin-bottom: 12px;
           }
 
           .quote {
-            margin-top: 10px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-style: italic;
             color: #7a6a6a;
           }
@@ -59,18 +72,18 @@ const server = http.createServer((req, res) => {
 
       <body>
         <div class="card">
-          <h1>Rod Marty C. Mendoza</h1>
-          <h2>BSIT NT - 4101</h2>
-          <div class="quote">"Go with the flow"</div>
+          <img src="/FormalAttire.jpg" alt="Profile Picture">
+          <div>
+            <h1>Rod Marty C. Mendoza</h1>
+            <h2>BSIT NT - 4101</h2>
+            <div class="quote">"Everything has been the result of my choices, not by fate"</div>
+          </div>
         </div>
       </body>
     </html>
-  `;
-
-  res.writeHead(200, { "Content-Type": "text/html" });
-  res.end(html);
+  `);
 });
 
-server.listen(PORT, () => {
-  console.log(`🌐 Server running on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`🌐 Express server running on port ${PORT}`);
 });
