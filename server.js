@@ -24,48 +24,67 @@ app.get("/", (req, res) => {
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #f5efe7;
+            background: linear-gradient(145deg, #eae2d6, #d1c4b2);
             font-family: "Poppins", sans-serif;
-            color: #2d2b2b;
+            color: #2c2b28;
           }
 
           .card {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 25px;
-            background: white;
-            padding: 35px 45px;
-            border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.10);
-            border: 1px solid rgba(0,0,0,0.05);
+            gap: 20px;
+            background: #ffffff;
+            padding: 50px 60px;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(0,0,0,0.08);
+            text-align: center;
+            max-width: 400px;
           }
 
           img {
-            width: 120px;
-            height: 120px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #c2b2b2;
+            border: 3px solid #b8a896;
           }
 
           h1 {
-            font-size: 2rem;
+            font-size: 2.2rem; /* Slightly smaller than before */
             font-weight: 700;
             font-family: "Playfair Display", serif;
-            margin-bottom: 6px;
+            color: #3b2f2f;
+            white-space: nowrap; /* Keeps full name in one line */
           }
 
           h2 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 400;
-            color: #6b5555;
-            margin-bottom: 12px;
+            color: #5e4c4c;
           }
 
           .quote {
             font-size: 1.05rem;
             font-style: italic;
-            color: #7a6a6a;
+            color: #6b5a5a;
+          }
+
+          @media (max-width: 480px) {
+            .card {
+              padding: 35px 25px;
+            }
+            img {
+              width: 140px;
+              height: 140px;
+            }
+            h1 {
+              font-size: 1.8rem; /* Slightly smaller on mobile */
+            }
+            h2 {
+              font-size: 1rem;
+            }
           }
         </style>
       </head>
@@ -73,11 +92,9 @@ app.get("/", (req, res) => {
       <body>
         <div class="card">
           <img src="/FormalAttire.jpg" alt="Profile Picture">
-          <div>
-            <h1>Rod Marty C. Mendoza</h1>
-            <h2>BSIT NT - 4101</h2>
-            <div class="quote">"Everything has been the result of my choices, not by fate"</div>
-          </div>
+          <h1>Rod Marty C. Mendoza</h1>
+          <h2>BSIT NT - 4101</h2>
+          <div class="quote">"Everything has been the result of my choices, not by fate"</div>
         </div>
       </body>
     </html>
